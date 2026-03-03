@@ -1,0 +1,42 @@
+body {
+    background-color: black;
+}
+
+/* Presentation section */
+.navbar {
+    background-color: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    background-color: red;
+}
+
+.buttons {
+    background-color: yellow;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    align-items: center;
+}
+
+.content {
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.chatbox {
+    background-color: purple;
+}
+
+.chat-content {
+    background-color: white;
+}
+
+.chat-input {
+    background-color: pink;
+}
