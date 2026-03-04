@@ -1,3 +1,20 @@
+.gugi-regular {
+  font-family: "Gugi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.handjet-regular {
+  font-family: "Handjet", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-variation-settings:
+    "ELGR" 1,
+    "ELSH" 2;
+}
+
 * {
     margin: 0 0;
     padding: 0 0;
@@ -13,13 +30,23 @@ body {
     height: 97.5vh;
 }
 
+body h1 {
+    font-family: "Gugi", sans-serif;
+    font-size: 4rem;
+    color: white;
+    margin-top: 5vh;
+}
+
+body p, btn, input, img {
+    font-family: 'Handjet', sans-serif;
+}
+
 /* Presentation section */
 .navbar {
     background-color: green;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 10vh;
     padding-left: 0;
 }
 
