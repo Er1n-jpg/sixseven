@@ -1,1 +1,2 @@
-# Lauder AI
+# Lauder A
+This is lauder AI
