@@ -5,8 +5,12 @@
 
 body {
     background-color: black;
-    width: 100%;
+    width: 98vw;
     margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    height: 97.5vh;
 }
 
 /* Presentation section */
@@ -16,6 +20,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     height: 10vh;
+    padding-left: 0;
 }
 
 .logo {
@@ -32,19 +37,31 @@ body {
 
 .content {
     background-color: grey;
-    height: 90vh;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 102%;
+    align-items: bottom;
 }
 
 .chatbox {
     background-color: purple;
     width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .chat-content {
     background-color: white;
+    overflow: scroll;
+    height: 100%;
+}
+
+.chat-content p {
+    font-size: 2rem;
 }
 
 .chat-input {
@@ -53,4 +70,5 @@ body {
 
 .chat-input input {
     width: 90%;
+    font-size: 2rem;
 }
