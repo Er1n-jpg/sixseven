@@ -33,7 +33,7 @@ body {
 body h1 {
     font-family: "Gugi", sans-serif;
     font-size: 4rem;
-    color: white;
+    color: #B23939;
     margin-top: 5vh;
 }
 
@@ -41,9 +41,14 @@ body p, btn, input, img {
     font-family: 'Handjet', sans-serif;
 }
 
+body btn {
+    color: #B23939;
+    font-size: 2.5rem;
+}
+
 /* Presentation section */
 .navbar {
-    background-color: green;
+    background-color: black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,11 +56,11 @@ body p, btn, input, img {
 }
 
 .logo {
-    background-color: red;
+    background-color: black;
 }
 
 .buttons {
-    background-color: yellow;
+    background-color: black;
     display: flex;
     flex-direction: row;
     gap: 10%;
@@ -63,7 +68,7 @@ body p, btn, input, img {
 }
 
 .content {
-    background-color: grey;
+    background-color: black;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -73,6 +78,7 @@ body p, btn, input, img {
 }
 
 .chatbox {
+    border-radius: 10rem;
     background-color: purple;
     width: 100vw;
     height: 80vh;
