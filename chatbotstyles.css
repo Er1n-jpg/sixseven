@@ -1,5 +1,12 @@
+* {
+    margin: 0 0;
+    padding: 0 0;
+}
+
 body {
     background-color: black;
+    width: 100%;
+    margin-left: 0;
 }
 
 /* Presentation section */
@@ -8,6 +15,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 10vh;
 }
 
 .logo {
@@ -24,13 +32,15 @@ body {
 
 .content {
     background-color: grey;
+    height: 90vh;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: space-between;
 }
 
 .chatbox {
     background-color: purple;
+    width: 100vw;
 }
 
 .chat-content {
@@ -39,4 +49,8 @@ body {
 
 .chat-input {
     background-color: pink;
+}
+
+.chat-input input {
+    width: 90%;
 }
