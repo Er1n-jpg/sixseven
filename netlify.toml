@@ -1,0 +1,14 @@
+[build]
+  # The folder your website files live in
+  publish = "public"
+ 
+  # The folder your serverless functions live in
+  functions = "netlify/functions"
+ 
+# Redirect all requests to /api/* to your functions
+# This means fetch("/api/feedback") in your JS calls
+# the feedback.js function automatically
+[[redirects]]
+  from   = "/api/:function"
+  to     = "/.netlify/functions/:function"
+  status = 200
