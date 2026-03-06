@@ -1,0 +1,39 @@
+body{
+    text-align: center;
+}
+
+h1{
+    font-size: 200px;
+    text-align:center;
+    font-family: Gulgi;
+    margin-bottom: 1%;
+    margin-top: 70px;
+}
+
+h4{
+    font-family: Handjet;
+    font-size: 48px;
+    margin-top: 1%;
+}
+@font-face {
+    font-family: Gulgi;
+    src: url(Gugi-Regular.ttf);
+}
+
+@font-face{
+    font-family: Handjet;
+    src: url(Handjet-VariableFont_ELGR\,ELSH\,wght.ttf);
+}
+.textContainer{
+    display: grid;
+    place-items: center;
+    
+}
+
+textarea{
+    width: 1173px;
+    height: 65px;
+    text-align: center;
+    
+    border-radius: 15px;
+}
