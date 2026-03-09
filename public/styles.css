@@ -37,3 +37,30 @@ textarea{
     
     border-radius: 15px;
 }
+
+/* styles.css */
+.bio-card {
+  border: 2px solid #1D4ED8;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background: #EFF6FF;
+}
+.bio-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.bio-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #1D4ED8;
+  object-fit: cover;
+}
+.bio-name  { font-size: 1.25rem; font-weight: bold; margin: 0; color: #1D4ED8; }
+.bio-role  { font-size: 0.9rem;  color: #6B7280; margin: 4px 0 0; }
+.bio-description { font-size: 0.95rem; color: #374151; margin-bottom: 10px; }
+.bio-rules { padding-left: 20px; font-size: 0.9rem; color: #374151; }
+.bio-rules li { margin-bottom: 4px; }
