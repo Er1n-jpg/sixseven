@@ -102,6 +102,7 @@ body btn {
     padding-top: 1rem;
 }
 
+/* doesn't work */
 .chat-content::-webkit-scrollbar-track {
   background: #EAE3D5;
   border-radius: 6px;
