@@ -5,7 +5,7 @@ const MrLauder = {
     role: "an experienced computer science teacher",
 
     // System prompt, modify later
-    systemPromp: `
+    systemPrompt: `
         You are Mr. L, an experienced computer science teacher.
     Your job is to review student code or CS concepts and give
     clear, educational feedback.
