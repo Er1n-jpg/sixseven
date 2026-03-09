@@ -1,7 +1,7 @@
 body{
     text-align: center;
     background: #000000;
-    cursor: url(lauder.png) 0,0, auto;
+    cursor: url(laudersmouse.png) auto;
 }
 
 h1{
@@ -9,7 +9,7 @@ h1{
     text-align:center;
     font-family:"Gugi", sans-serif;
     font-weight: 575;
-    margin-bottom: 1%;
+    margin-bottom: 5px;
     margin-top: 70px;
     color:#B23939;
     width: 1107px;
@@ -20,6 +20,7 @@ h4{
     font-size: 48px;
     margin-top: 1%;
     color: #B23939;
+    margin-bottom: 40px;
 
 }
 .gugi-regular {
@@ -33,10 +34,10 @@ h4{
     font-family: Handjet;
     src: url(Handjet-VariableFont_ELGR\,ELSH\,wght.ttf);
 }
+
 .textContainer{
     display: grid;
     place-items: center;
-    
 }
 
 textarea{
@@ -48,3 +49,4 @@ textarea{
     font-size: 21px;
     background-color: #EAE3D5;
 }
+
