@@ -103,7 +103,7 @@ body btn {
 }
 
 .chat-content::-webkit-scrollbar-track {
-  background: #EAE3D5;       /* track (behind the scrollbar) */
+  background: #EAE3D5;
   border-radius: 6px;
 }
 
