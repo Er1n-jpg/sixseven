@@ -28,9 +28,13 @@ function renderBioCard() {
 }
  
 // ── Wire up the submit button ───────────────────────────────────
+// const submitBtn   = document.getElementById("submit");
+// const contentArea = document.getElementById("content");
+// const output      = document.getElementById("output");
+
 const submitBtn   = document.getElementById("submit");
-const contentArea = document.getElementById("content");
-const output      = document.getElementById("output");
+const contentArea = document.getElementById("text-input");
+const output      = document.getElementById("chat-content");
  
 document.addEventListener("DOMContentLoaded", () => {
   renderBioCard();   // show Mr. L before anything else
