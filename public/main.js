@@ -1,11 +1,11 @@
 // main.js
 import { getFeedback } from './feedback.js';
 import MrLauder from './Personality.js';
- 
+
 // ── Render the bio card once on page load ──────────────────────
 // function renderBioCard() {
 //   const card = document.getElementById("bio-card");
- 
+
 //   card.innerHTML = `
 //     <div class="bio-header">
 //       <img src="/avatars/mrLauder.png" alt="Mr. Lauder" class="bio-avatar" />
@@ -26,7 +26,7 @@ import MrLauder from './Personality.js';
 //     </ul>
 //   `;
 // }
- 
+
 // document.addEventListener("DOMContentLoaded", () => {
 //   renderBioCard();   // show Mr. L before anything else
 // });
@@ -34,8 +34,8 @@ import MrLauder from './Personality.js';
 // ── Wire up the submit button ───────────────────────────────────
 
 const chatContent = document.getElementById('chat-content');
-const textInput   = document.getElementById('text-input');
-const submitBtn   = document.getElementById('submit');
+const textInput = document.getElementById('text-input');
+const submitBtn = document.getElementById('submit');
 
 // ── Clear the placeholder paragraphs from your HTML ──────────────
 chatContent.innerHTML = '';
@@ -91,8 +91,8 @@ async function handleSubmit() {
   const content = textInput.value.trim();
   if (!content) return;
 
-  const context = (chatContent.innerHTML.length === 0)? '' : getContext(chatContent.innerHTML)
-  console.log(context);
+  const context = (chatContent.innerHTML.length === 0) ? '' : getContext(chatContent.innerHTML)
+  console.log("Context: " + context);
 
   appendMessage('user', content);
   textInput.value = "";
@@ -100,20 +100,20 @@ async function handleSubmit() {
 
   showTyping();
 
-  try{
+  try {
     const feedback = await getFeedback(content, context);
     removeTyping();
     appendMessage(MrLauder, feedback);
-  }catch(err){
+  } catch (err) {
     removeTyping();
     appendMessage('system', "Something went wrong. Please try again.");
     console.error(err);
-  }finally{
+  } finally {
     submitBtn.disabled = false;
     textInput.focus();
   }
 }
- 
+
 submitBtn.addEventListener("click", handleSubmit);
 textInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') handleSubmit();
