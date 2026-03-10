@@ -118,7 +118,7 @@ body btn {
     justify-content: space-around;
 }
 
-.chat-input input {
+.chat-input textarea {
     width: 90%;
     font-size: 2rem;
     border-radius: 0.7rem;
