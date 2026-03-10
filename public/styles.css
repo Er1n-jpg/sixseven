@@ -41,7 +41,7 @@ textarea{
 }
 
 /* styles.css */
-.bio-card {
+/* .bio-card {
   border: 2px solid #1D4ED8;
   border-radius: 12px;
   padding: 20px;
@@ -65,7 +65,7 @@ textarea{
 .bio-role  { font-size: 0.9rem;  color: #6B7280; margin: 4px 0 0; }
 .bio-description { font-size: 0.95rem; color: #374151; margin-bottom: 10px; }
 .bio-rules { padding-left: 20px; font-size: 0.9rem; color: #374151; }
-.bio-rules li { margin-bottom: 4px; }
+.bio-rules li { margin-bottom: 4px; } */
 
 .output{
     color: #EFF6FF;
