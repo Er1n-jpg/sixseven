@@ -18,11 +18,12 @@
 * {
     margin: 0 0;
     padding: 0 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: black;
-    width: 98vw;
+    width: 100%;
     margin-left: 0;
     display: flex;
     flex-direction: column;
@@ -35,6 +36,7 @@ body h1 {
     font-size: 4rem;
     color: #B23939;
     margin-top: 5vh;
+    justify-content: center;
 }
 
 body p, btn, input, img {
@@ -52,18 +54,19 @@ body btn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 0;
+    padding: 0.2rem 2rem;
 }
 
 .logo {
-    background-color: black;
+    display: flex;
+    background-color: yellow;
 }
 
 .buttons {
     background-color: black;
     display: flex;
     flex-direction: row;
-    gap: 10%;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -73,24 +76,36 @@ body btn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 102%;
+    width: 100%;
     align-items: bottom;
 }
 
 .chatbox {
-    border-radius: 10rem;
-    background-color: purple;
+    border-radius: 2rem;
+    background-color: #EAE3D5;
+    border-color: #791212;
+    border-width: 10px;
     width: 100vw;
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
+    margin-right: 2rem;
 }
 
 .chat-content {
-    background-color: white;
-    overflow: scroll;
+    background-color: transparent;
+    overflow-y: scroll;
     height: 100%;
+    margin-left: 1rem;
+    padding-top: 1rem;
+}
+
+/* doesn't work */
+.chat-content::-webkit-scrollbar-track {
+  background: #EAE3D5;
+  border-radius: 6px;
 }
 
 .chat-content p {
@@ -98,12 +113,23 @@ body btn {
 }
 
 .chat-input {
-    background-color: pink;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.chat-input input {
+.chat-input textarea {
     width: 90%;
     font-size: 2rem;
+    border-radius: 0.7rem;
+    border-color: transparent;
+    margin: 1rem 0.5rem;
+    padding-left: 1rem;
+}
+
+.chat-input img {
+    width: 3%;
+    height: auto;
 }
 
 /* Chat styling */
