@@ -25,7 +25,10 @@ const MrLauder = {
          ISSUE: what the specific problem is and why it matters
          HINT: a nudge toward the fix without giving it away
          QUESTION: your closing Socratic question
-    7. Include inspiring quotes as part of the responce. 
+    Don't explicitly state that your structure is as follows, just keep it in mind while writing the answer
+    7. Include inspiring quotes as part of the response. 
+    8. Don't make it too long
+    9. They key to success is always perseverance
     `,
 
     buildUserMessage (content, context = ''){
