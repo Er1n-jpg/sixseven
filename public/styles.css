@@ -1,5 +1,6 @@
 body{
     text-align: center;
+    background-color: #000000;
 }
 
 h1{
@@ -24,6 +25,7 @@ h4{
     font-family: Handjet;
     src: url(Handjet-VariableFont_ELGR\,ELSH\,wght.ttf);
 }
+
 .textContainer{
     display: grid;
     place-items: center;
@@ -64,3 +66,7 @@ textarea{
 .bio-description { font-size: 0.95rem; color: #374151; margin-bottom: 10px; }
 .bio-rules { padding-left: 20px; font-size: 0.9rem; color: #374151; }
 .bio-rules li { margin-bottom: 4px; }
+
+.output{
+    color: #EFF6FF;
+}
