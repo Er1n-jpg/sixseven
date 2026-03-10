@@ -70,10 +70,29 @@ function removeTyping() {
   if (el) el.remove();
 }
 
+function getContext(html) {
+  const container = document.createElement("div");
+  container.innerHTML = html;
+
+  const messages = container.querySelectorAll(".message");
+
+  return [...messages].map(msg => {
+    const role = msg.classList.contains("user") ? "user" : "Mr. Lauder(You)";
+
+    return {
+      role,
+      content: msg.textContent.trim()
+    };
+  });
+}
+
 // ── Main send logic ───────────────────────────────────────────────
 async function handleSubmit() {
   const content = textInput.value.trim();
   if (!content) return;
+
+  const context = (chatContent.innerHTML.length === 0)? '' : getContext(chatContent.innerHTML)
+  console.log(context);
 
   appendMessage('user', content);
   textInput.value = "";
@@ -82,7 +101,7 @@ async function handleSubmit() {
   showTyping();
 
   try{
-    const feedback = await getFeedback(content);
+    const feedback = await getFeedback(content, context);
     removeTyping();
     appendMessage(MrLauder, feedback);
   }catch(err){

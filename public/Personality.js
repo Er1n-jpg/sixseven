@@ -30,7 +30,7 @@ const MrLauder = {
 
     buildUserMessage (content, context = ''){
         return [
-            context ? `Student context: ${context}`: "",
+            context ? `Student context / chat history: ${context}`: "",
             "Please review the following and give feedback as Mr. Lauder",
            "",
            content,
