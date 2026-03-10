@@ -131,3 +131,46 @@ body btn {
     width: 3%;
     height: auto;
 }
+
+/* Chat styling */
+
+/* Chat history */
+.message {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.message p {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-wrap; /* preserves Mr. Lauder's line breaks */
+}
+
+/* User messages — right aligned */
+.message.user {
+  justify-content: flex-end;
+}
+.message.user p {
+  background: #1D4ED8;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* Mr. Lauder messages — left aligned */
+.message.mrLauder {
+  justify-content: flex-start;
+}
+.message.mrLauder p {
+  background: #F1F5F9;
+  color: #1E293B;
+  border-bottom-left-radius: 4px;
+}
+
+/* Typing indicator */
+.typing-indicator p {
+  color: #94A3B8;
+  font-style: italic;
+}

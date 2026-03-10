@@ -25,7 +25,7 @@
             <img src="images/ai-lauder.png" alt="Lauder Img">
         </div>
         <div class="chatbox">
-            <div class="chat-content">
+            <div id="chat-content" class="chat-content">
                 <p>hehe</p>
                 <p>hehe</p>
                 <p>1</p>
@@ -48,11 +48,13 @@
                 <p>18</p>
             </div>
             <div class="chat-input">
-                <textarea id="text-input" placeholder="Talk to me..."></textarea>
-                <img src="images/send-arrow.png" alt="send">
+                <!-- <textarea id="content" placeholder="Paste your code or describe a CS concept..." rows="10"></textarea> -->
+                <textarea id="text-input" type="text" placeholder="Talk to me..."></textarea>
+                <button id="submit">Send</button>
+                <!-- <img src="" alt="send"> -->
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
