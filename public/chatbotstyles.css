@@ -1,0 +1,176 @@
+.gugi-regular {
+  font-family: "Gugi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.handjet-regular {
+  font-family: "Handjet", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-variation-settings:
+    "ELGR" 1,
+    "ELSH" 2;
+}
+
+* {
+    margin: 0 0;
+    padding: 0 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    height: 97.5vh;
+}
+
+body h1 {
+    font-family: "Gugi", sans-serif;
+    font-size: 4rem;
+    color: #B23939;
+    margin-top: 5vh;
+    justify-content: center;
+}
+
+body p, btn, input, img {
+    font-family: 'Handjet', sans-serif;
+}
+
+body btn {
+    color: #B23939;
+    font-size: 2.5rem;
+}
+
+/* Presentation section */
+.navbar {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.2rem 2rem;
+}
+
+.logo {
+    display: flex;
+    background-color: yellow;
+}
+
+.buttons {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+}
+
+.content {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: bottom;
+}
+
+.chatbox {
+    border-radius: 2rem;
+    background-color: #EAE3D5;
+    border-color: #791212;
+    border-width: 10px;
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    margin-right: 2rem;
+}
+
+.chat-content {
+    background-color: transparent;
+    overflow-y: scroll;
+    height: 100%;
+    margin-left: 1rem;
+    padding-top: 1rem;
+}
+
+/* doesn't work */
+.chat-content::-webkit-scrollbar-track {
+  background: #EAE3D5;
+  border-radius: 6px;
+}
+
+.chat-content p {
+    font-size: 2rem;
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chat-input textarea {
+    width: 90%;
+    font-size: 2rem;
+    border-radius: 0.7rem;
+    border-color: transparent;
+    margin: 1rem 0.5rem;
+    padding-left: 1rem;
+}
+
+.chat-input img {
+    width: 3%;
+    height: auto;
+}
+
+/* Chat styling */
+
+/* Chat history */
+.message {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.message p {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-wrap; /* preserves Mr. Lauder's line breaks */
+}
+
+/* User messages — right aligned */
+.message.user {
+  justify-content: flex-end;
+}
+.message.user p {
+  background: #1D4ED8;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* Mr. Lauder messages — left aligned */
+.message.mrLauder {
+  justify-content: flex-start;
+}
+.message.mrLauder p {
+  background: #F1F5F9;
+  color: #1E293B;
+  border-bottom-left-radius: 4px;
+}
+
+/* Typing indicator */
+.typing-indicator p {
+  color: #94A3B8;
+  font-style: italic;
+}

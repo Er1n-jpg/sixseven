@@ -13,9 +13,7 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="logo">
-            <h1>Lauder AI</h1>
-        </div>
+        <h1>Lauder AI</h1>
         <div class="buttons">
             <btn id="script">Script</btn>
             <btn id="record">Record</btn>
@@ -24,10 +22,10 @@
     </div>
     <div class="content">
         <div class="lauder">
-            <img src="" alt="Lauder Img">
+            <img src="images/ai-lauder.png" alt="Lauder Img">
         </div>
         <div class="chatbox">
-            <div class="chat-content">
+            <div id="chat-content" class="chat-content">
                 <p>hehe</p>
                 <p>hehe</p>
                 <p>1</p>
@@ -50,11 +48,13 @@
                 <p>18</p>
             </div>
             <div class="chat-input">
-                <input id="text-input" type="text" placeholder="Talk to me...">
-                <img src="" alt="send">
+                <!-- <textarea id="content" placeholder="Paste your code or describe a CS concept..." rows="10"></textarea> -->
+                <textarea id="text-input" type="text" placeholder="Talk to me..."></textarea>
+                <button id="submit">Send</button>
+                <!-- <img src="" alt="send"> -->
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
