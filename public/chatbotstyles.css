@@ -33,7 +33,7 @@ body {
 body h1 {
     font-family: "Gugi", sans-serif;
     font-size: 4rem;
-    color: #B23939;
+    color: #ff0000;
     margin-top: 5vh;
     justify-content: center;
 }
@@ -43,7 +43,7 @@ body p, btn, input, img {
 }
 
 body btn {
-    color: #B23939;
+    color: #ff0000;
     font-size: 2.5rem;
 }
 
