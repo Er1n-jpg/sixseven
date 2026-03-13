@@ -36,6 +36,20 @@ import MrLauder from './Personality.js';
 const chatContent = document.getElementById('chat-content');
 const textInput   = document.getElementById('text-input');
 const submitBtn   = document.getElementById('submit');
+const scriptBtn = document.getElementById('script');
+
+let script = false;
+
+scriptBtn.addEventListener('click', function() {
+  // Toggle the state variable
+  script = !script;
+
+  if (script){
+    scriptBtn.style.backgroundColor = 'white';
+  } else{
+    scriptBtn.style.backgroundColor = '';
+  }
+});
 
 // ── Clear the placeholder paragraphs from your HTML ──────────────
 chatContent.innerHTML = '';
@@ -101,7 +115,7 @@ async function handleSubmit() {
   showTyping();
 
   try{
-    const feedback = await getFeedback(content, context);
+    const feedback = await getFeedback(content, context, script);
     removeTyping();
     appendMessage(MrLauder, feedback);
   }catch(err){
@@ -118,3 +132,4 @@ submitBtn.addEventListener("click", handleSubmit);
 textInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') handleSubmit();
 });
+

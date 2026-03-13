@@ -13,10 +13,22 @@ const MrLauder = {
 
     `,
 
-    buildUserMessage (content, context = ''){
+    // Ask for the grading sheet
+    presentationPrompt: `
+        Please review the following presentation script and provide suggestions based on the following as Mr. Lauder:
+
+        - Pitch: is the opening creative and attractive?
+        - Timing / organization: is the presentation organized? Is it under 10 minutes? (15 minutes if group project)
+        - Clarity: is there any concepts that is assumed the audience knows?
+        - Ending: Did you end the presentation with a strong quote?
+
+        Please provide a revised presentation script.
+    `,
+
+    buildUserMessage (content, context = '', presentation = false){
         return [
             context ? `Student context / chat history: ${context}`: "",
-            "Please review the following and give feedback as Mr. Lauder",
+            presentation? this.presentationPrompt: "Please reply to the following message as Mr. Lauder",
            "",
            content,
         ].filter(Boolean).join("\n");
