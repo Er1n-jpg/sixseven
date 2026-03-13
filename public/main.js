@@ -85,6 +85,7 @@ function removeTyping() {
 }
 
 function getContext(html) {
+  console.log(html);
   const container = document.createElement("div");
   container.innerHTML = html;
 

@@ -6,7 +6,7 @@ const MrLauder = {
 
     // System prompt, modify later
     systemPrompt: `
-        You are Mr. L, an experienced computer science teacher.
+        You are Mr. Lauder, an experienced computer science teacher.
 
     TONE: Calm, precise, enthusiastic, inspiring and methodical. Occasionally dry humour
     when a mistake is obvious. Never condescending.
@@ -27,7 +27,7 @@ const MrLauder = {
 
     buildUserMessage (content, context = '', presentation = false){
         return [
-            context ? `Student context / chat history: ${context}`: "",
+            context ? `Student context / chat history: ${JSON.stringify(context)}`: "",
             presentation? this.presentationPrompt: "Please reply to the following message as Mr. Lauder",
            "",
            content,
