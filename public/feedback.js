@@ -2,10 +2,11 @@
 // The API key is safe here.
 import MrLauder from './Personality.js';
  
-export async function getFeedback(content, context = "") {
+export async function getFeedback(content, context = "", presentation = "") {
   console.log('MrLauder object:', MrLauder);
   const systemPrompt = MrLauder.systemPrompt;
-  const userMessage  = MrLauder.buildUserMessage(content, context);
+  const userMessage  = MrLauder.buildUserMessage(content, context, presentation);
+  console.log(userMessage);
  
   // /api/feedback hits your local Express server at localhost:3000
   // No change needed here — the URL works the same way locally.
