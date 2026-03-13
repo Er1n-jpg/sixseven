@@ -4,7 +4,6 @@
   font-style: normal;
 }
 
-
 .handjet-regular {
   font-family: "Handjet", sans-serif;
   font-optical-sizing: auto;
@@ -34,7 +33,7 @@ body {
 body h1 {
     font-family: "Gugi", sans-serif;
     font-size: 4rem;
-    color: #B23939;
+    color: #ff0000;
     margin-top: 5vh;
     justify-content: center;
 }
@@ -44,7 +43,7 @@ body p, btn, input, img {
 }
 
 body btn {
-    color: #B23939;
+    color: #ff0000;
     font-size: 2.5rem;
 }
 
@@ -125,7 +124,22 @@ body btn {
     border-color: transparent;
     margin: 1rem 0.5rem;
     padding-left: 1rem;
+    font-family: "Handjet", sans-serif;
+    /* color: #791212; */
 }
+
+.chat-input button {
+    background-color: #ffffff;
+    padding: 0.5rem;
+    font-family: "Handjet", sans-serif;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+    margin-right: 2rem;
+}
+
+/* .chat-input textarea:placeholder {
+    color: #791212;
+} */
 
 .chat-input img {
     width: 3%;
@@ -154,7 +168,7 @@ body btn {
   justify-content: flex-end;
 }
 .message.user p {
-  background: #1D4ED8;
+  background: #791212;
   color: white;
   border-bottom-right-radius: 4px;
 }
