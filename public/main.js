@@ -54,8 +54,17 @@ scriptBtn.addEventListener('click', function() {
 // ── Clear the placeholder paragraphs from your HTML ──────────────
 chatContent.innerHTML = '';
 
+// Greet the student by name if one was provided on the welcome screen
+const studentName = sessionStorage.getItem('studentName');
+if (studentName) {
+  appendMessage(
+    MrLauder,
+    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! Above you can click to either record or upload your script, and upload a PDF version of your slides/presentation.`
+  );
+}
+
 // ── Adds a message bubble to the chat ────────────────────────────
-function appendMessage(sender, text) {
+export function appendMessage(sender, text) {
   const wrapper = document.createElement('div');
   wrapper.className = `message ${sender}`; // 'user' or 'mrLauder'
 
@@ -103,9 +112,11 @@ function getContext(html) {
 
 // ── Main send logic ───────────────────────────────────────────────
 async function handleSubmit() {
+  // Get user message
   const content = textInput.value.trim();
   if (!content) return;
 
+  // Get context
   const context = (chatContent.innerHTML.length === 0) ? '' : getContext(chatContent.innerHTML)
   console.log("Context: " + context);
 
