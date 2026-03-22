@@ -17,20 +17,24 @@ export function parseReviewText(reviewText) {
   let overallSummary   = '';
   let socraticQuestion = '';
 
-  // Split on the --- separator between slides
-  const blocks = reviewText.split(/^---+$/m).map(b => b.trim()).filter(Boolean);
+  // Extract OVERALL SUMMARY and SOCRATIC QUESTION from the full text first,
+  // before splitting into blocks — this prevents them leaking into slide fields.
+  const summaryMatch = reviewText.match(/OVERALL SUMMARY:\s*([\s\S]*?)(?=SOCRATIC QUESTION:|$)/i);
+  const socraticMatch = reviewText.match(/SOCRATIC QUESTION:\s*([\s\S]*?)(?=---|$)/i);
+  if (summaryMatch)  overallSummary   = summaryMatch[1].trim();
+  if (socraticMatch) socraticQuestion = socraticMatch[1].trim();
+
+  // Remove the summary and question from the text before splitting into slide blocks
+  // so they don't contaminate the last slide's fields
+  const cleanedText = reviewText
+    .replace(/OVERALL SUMMARY:[\s\S]*?(?=---|$)/i, '')
+    .replace(/SOCRATIC QUESTION:[\s\S]*?(?=---|$)/i, '')
+    .trim();
+
+  // Split on --- separators
+  const blocks = cleanedText.split(/^---+$/m).map(b => b.trim()).filter(Boolean);
 
   for (const block of blocks) {
-    if (block.startsWith('OVERALL SUMMARY:')) {
-      overallSummary = block.replace('OVERALL SUMMARY:', '').trim();
-      continue;
-    }
-    if (block.startsWith('SOCRATIC QUESTION:')) {
-      socraticQuestion = block.replace('SOCRATIC QUESTION:', '').trim();
-      continue;
-    }
-
-    // Parse a slide block
     const slideMatch = block.match(/^SLIDE\s+(\d+):\s*(.*)$/m);
     if (!slideMatch) continue;
 
@@ -39,25 +43,29 @@ export function parseReviewText(reviewText) {
     const observation = extractField(block, 'OBSERVATION');
     const issues      = extractField(block, 'ISSUES');
     const suggestion  = extractField(block, 'SUGGESTION');
-    const priority    = extractField(block, 'PRIORITY') || 'Medium';
+    const priority    = extractPriority(block);
 
     slideBlocks.push({ index, title, observation, issues, suggestion, priority });
   }
 
-  // Also handle OVERALL SUMMARY and SOCRATIC QUESTION if they appear inline
-  const summaryMatch   = reviewText.match(/OVERALL SUMMARY:\s*([\s\S]*?)(?=SOCRATIC QUESTION:|$)/);
-  const socraticMatch  = reviewText.match(/SOCRATIC QUESTION:\s*([\s\S]*?)$/);
-  if (summaryMatch && !overallSummary)   overallSummary   = summaryMatch[1].trim();
-  if (socraticMatch && !socraticQuestion) socraticQuestion = socraticMatch[1].trim();
-
   return { slides: slideBlocks, overallSummary, socraticQuestion };
 }
 
-/** Extracts the value of a labelled field from a block of text */
+/** Extracts multi-line field values, stopping at the next field label */
 function extractField(block, fieldName) {
-  const regex = new RegExp(`${fieldName}:\\s*([^\\n]+(?:\\n(?!\\w+:)[^\\n]*)*)`, 'i');
+  const regex = new RegExp(
+    `${fieldName}:\\s*([\\s\\S]*?)(?=\\n(?:OBSERVATION|ISSUES|SUGGESTION|PRIORITY|OVERALL SUMMARY|SOCRATIC QUESTION):|$)`,
+    'i'
+  );
   const match = block.match(regex);
   return match ? match[1].trim() : '';
+}
+
+/** Extracts PRIORITY specifically — always a single word on one line */
+function extractPriority(block) {
+  // Match only the word immediately after PRIORITY: on the same line
+  const match = block.match(/PRIORITY:\s*(High|Medium|Low)/i);
+  return match ? match[1].trim() : 'Medium';
 }
 
 /**
