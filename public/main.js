@@ -48,7 +48,7 @@ scriptBtn.addEventListener('click', function() {
   script = !script;
 
   if (script){
-    scriptBtn.style.backgroundColor = 'white';
+    scriptBtn.style.backgroundColor = '#c8e0c1';
   } else{
     scriptBtn.style.backgroundColor = '';
   }
