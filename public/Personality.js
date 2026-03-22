@@ -34,3 +34,22 @@ const MrLauder = {
 };
 
 export default MrLauder;
+
+export const SlideReviewer = {
+  name: 'Mr. Lauder',
+
+  // Prompt lives in /slidePrompts.js (server-side only).
+  // To edit the prompt, change it there — that is the single source of truth.
+  // This object is kept for any future browser-side use (e.g. displaying
+  // the review criteria to students before they upload).
+
+  buildReviewMessage(slides) {
+    const slideText = slides.map(s => {
+      const parts = [`SLIDE ${s.index}: "${s.title}"`];
+      if (s.body)  parts.push(`Content:\n${s.body}`);
+      if (s.notes) parts.push(`Speaker Notes: ${s.notes}`);
+      return parts.join('\n');
+    }).join('\n\n---\n\n');
+    return `Please review the following presentation. There are ${slides.length} slides total.\n\n${slideText}`;
+  },
+};

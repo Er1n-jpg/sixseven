@@ -9,35 +9,81 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Handjet:wght,ELSH@100..900,2&display=swap');
     </style>
-    <link rel = "icon" type = "lauder.png" href = "lauder.png">
+    <link rel = "icon" type = "lauder.png" href = "images/lauder.png">
 </head>
 <body>
     <div class="navbar">
         <h1 href="index.html">Lauder AI</h1>
         <div class="buttons">
-            <btn id="script">Script</btn>
-            <btn id="record">Record</btn>
-            <btn id="upload">Upload</btn>
+            <!-- Existing buttons unchanged -->
+            <!-- <btn id="script">Script</btn> Moved down--> 
+            <!-- <btn id="record">Record</btn> -->
+            <!-- <btn id="upload">Upload</btn> -->
+
+            <!-- NEW: tab switcher buttons, styled to match your existing <btn> elements -->
+            <btn id="tab-btn-chat"   class="tab-btn active" data-tab="chat">Chat</btn>
+            <btn id="tab-btn-slides" class="tab-btn"        data-tab="slides">Slide Review</btn>
         </div>
     </div>
     <div class="content">
         <div class="lauder">
-            <img src="../images/ai-lauder.png" alt="Lauder Img">
+            <img src="images/ai-lauder.png" alt="Lauder Img">
         </div>
-        <div class="chatbox">
-            <div id="chat-content" class="chat-content">
-                <p>TALK TO MEEE</p>
-            </div>
-            <div class="chat-input">
-                <!-- <textarea id="content" placeholder="Paste your code or describe a CS concept..." rows="10"></textarea> -->
-                <textarea id="text-input" type="text" placeholder="Talk to me..."></textarea>
-                <button id="submit">
-                    <!-- <img src="../images/send-arrow.png"> -->
-                    send
-                </button>
-                <!-- <img src="" alt="send"> -->
+        <div id="tab-chat" class="tab-panel active">
+            <div class="chatbox">
+                <div id="chat-content" class="chat-content">
+                    <p>TALK TO MEEE</p>
+                </div>
+                <div class="chat-input">
+                    <!-- <textarea id="content" placeholder="Paste your code or describe a CS concept..." rows="10"></textarea> -->
+                    <textarea id="text-input" type="text" placeholder="Talk to me..."></textarea>
+                    <button id="submit">
+                        <!-- <img src="../images/send-arrow.png"> -->
+                        send
+                    </button>
+                    <button id="script">Script</button>
+                    <!-- <img src="" alt="send"> -->
+                </div>
             </div>
         </div>
+        <!-- NEW: slide review panel — hidden until tab is clicked -->
+        <div id="tab-slides" class="tab-panel">
+
+            <div class="slide-upload-area" id="slide-upload-area">
+                <div class="upload-icon">📂</div>
+                <p class="upload-label">Upload your presentation</p>
+                <p class="upload-hint">Accepts .pptx files — max 15MB</p>
+                <label class="upload-btn" for="slide-file-input">Choose File</label>
+                <input type="file" id="slide-file-input" accept=".pptx" style="display: none;">
+                <p id="file-name-display" class="file-name-display"></p>
+            </div>
+
+            <button id="review-btn" class="review-btn" disabled>
+                Review My Slides
+            </button>
+
+            <div id="slide-review-loading" class="slide-review-loading" style="display:none;">
+                <div class="loading-spinner"></div>
+                <p class="loading-message" id="loading-message">Reading your slides...</p>
+            </div>
+
+            <div id="slide-review-results" class="slide-review-results" style="display:none;">
+                <div class="results-header">
+                    <span id="slide-count-label"></span>
+                    <button id="download-feedback-btn" class="download-btn">⬇ Download Feedback</button>
+                </div>
+                <div id="slide-cards-container"></div>
+                <div id="overall-summary-card" class="summary-card" style="display:none;">
+                    <h3>Overall Summary</h3>
+                    <p id="overall-summary-text"></p>
+                    <h3>Mr. Lauder's Question For You</h3>
+                    <p id="socratic-question-text" class="socratic-q"></p>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
     </div>
     <script type="module" src="main.js"></script>
 </body>
