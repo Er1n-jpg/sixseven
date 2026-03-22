@@ -1,0 +1,44 @@
+<!-- chatbot page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lauder AI - chatbot</title>
+    <link rel="stylesheet" href="chatbotstyles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Handjet:wght,ELSH@100..900,2&display=swap');
+    </style>
+    <link rel = "icon" type = "lauder.png" href = "lauder.png">
+</head>
+<body>
+    <div class="navbar">
+        <h1 href="index.html">Lauder AI</h1>
+        <div class="buttons">
+            <btn id="script">Script</btn>
+            <!-- <btn id="record">Record</btn> -->
+            <btn id="upload">Upload</btn>
+        </div>
+    </div>
+    <div class="content">
+        <div class="lauder">
+            <img src="../images/ai-lauder.png" alt="Lauder Img">
+        </div>
+        <div class="chatbox">
+            <div id="chat-content" class="chat-content">
+                <p>TALK TO MEEE</p>
+            </div>
+            <div class="chat-input">
+                <!-- <textarea id="content" placeholder="Paste your code or describe a CS concept..." rows="10"></textarea> -->
+                <textarea id="text-input" type="text" placeholder="Talk to me..."></textarea>
+                <button id="submit">
+                    <!-- <img src="../images/send-arrow.png"> -->
+                    send
+                </button>
+                <!-- <img src="" alt="send"> -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

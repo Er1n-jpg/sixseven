@@ -20,6 +20,8 @@
   "homepage": "https://github.com/Er1n-jpg/sixseven#readme",
   "dependencies": {
     "dotenv": "^17.3.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "jszip": "^3.10.1",
+    "multer": "^2.1.1"
   }
 }

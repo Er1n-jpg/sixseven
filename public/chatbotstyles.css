@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════════════════════════
+   FONTS
+═══════════════════════════════════════════════════════════ */
+
 .gugi-regular {
   font-family: "Gugi", sans-serif;
   font-weight: 400;
@@ -13,6 +17,10 @@
     "ELGR" 1,
     "ELSH" 2;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════ */
 
 * {
     margin: 0 0;
@@ -47,7 +55,10 @@ body btn {
     font-size: 2.5rem;
 }
 
-/* Presentation section */
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT — NAVBAR & CONTENT
+═══════════════════════════════════════════════════════════ */
+
 .navbar {
     background-color: black;
     display: flex;
@@ -79,6 +90,22 @@ body btn {
     align-items: bottom;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   TAB PANELS
+═══════════════════════════════════════════════════════════ */
+
+.tab-panel        { display: none; width: 100%; height: 100%; }
+.tab-panel.active { display: flex; flex-direction: column; justify-content: flex-end; }
+
+.tab-btn        { cursor: pointer; }
+.tab-btn.active { color: white !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   CHATBOX — shared container
+   overflow is intentionally NOT set here.
+   Each panel manages its own overflow independently below.
+═══════════════════════════════════════════════════════════ */
+
 .chatbox {
     border-radius: 2rem;
     background-color: #EAE3D5;
@@ -89,8 +116,19 @@ body btn {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CHAT PANEL
+   Clips its own overflow so the input stays pinned at bottom.
+═══════════════════════════════════════════════════════════ */
+
+#tab-chat.tab-panel.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     overflow: hidden;
-    margin-right: 2rem;
+    height: 100%;
 }
 
 .chat-content {
@@ -101,7 +139,6 @@ body btn {
     padding-top: 1rem;
 }
 
-/* doesn't work */
 .chat-content::-webkit-scrollbar-track {
   background: #EAE3D5;
   border-radius: 6px;
@@ -125,7 +162,6 @@ body btn {
     margin: 1rem 0.5rem;
     padding-left: 1rem;
     font-family: "Handjet", sans-serif;
-    /* color: #791212; */
 }
 
 .chat-input button {
@@ -137,18 +173,13 @@ body btn {
     margin-right: 2rem;
 }
 
-/* .chat-input textarea:placeholder {
-    color: #791212;
-} */
-
 .chat-input img {
     width: 3%;
     height: auto;
 }
 
-/* Chat styling */
+/* ── Chat message bubbles ── */
 
-/* Chat history */
 .message {
   display: flex;
   margin-bottom: 12px;
@@ -160,31 +191,308 @@ body btn {
   border-radius: 16px;
   margin: 0;
   line-height: 1.5;
-  white-space: pre-wrap; /* preserves Mr. Lauder's line breaks */
+  white-space: pre-wrap; /* intentional for chat bubbles only */
 }
 
-/* User messages — right aligned */
-.message.user {
-  justify-content: flex-end;
+.message.user             { justify-content: flex-end; }
+.message.user p           { background: #791212; color: white; border-bottom-right-radius: 4px; }
+
+.message.mrLauder         { justify-content: flex-start; }
+.message.mrLauder p       { background: #F1F5F9; color: #1E293B; border-bottom-left-radius: 4px; }
+
+.typing-indicator p       { color: #94A3B8; font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════════
+   SLIDE REVIEW PANEL
+   Scrolls independently from the chat panel.
+   box-sizing: border-box ensures padding doesn't cause overflow.
+═══════════════════════════════════════════════════════════ */
+
+#tab-slides.tab-panel.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
 }
-.message.user p {
+
+/* ── Upload area ── */
+
+.slide-upload-area {
+  border: 2px dashed #791212;
+  border-radius: 12px;
+  padding: 40px 24px;
+  text-align: center;
+  background: rgba(255,255,255,0.15);
+  transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.slide-upload-area:hover { border-color: #ff0000; }
+
+.upload-icon  { font-size: 40px; margin-bottom: 8px; }
+.upload-label { font-weight: 600; font-size: 1.2rem; margin: 0 0 4px; color: #1E293B; }
+.upload-hint  { color: #64748B; font-size: 0.9rem; margin: 0 0 16px; font-family: "Handjet", sans-serif; }
+
+.upload-btn {
+  display: inline-block;
+  padding: 10px 24px;
   background: #791212;
   color: white;
-  border-bottom-right-radius: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: "Handjet", sans-serif;
+  transition: background 0.15s ease;
 }
 
-/* Mr. Lauder messages — left aligned */
-.message.mrLauder {
-  justify-content: flex-start;
+.upload-btn:hover { background: #ff0000; }
+
+.file-name-display {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #334155;
+  font-family: "Handjet", sans-serif;
 }
-.message.mrLauder p {
-  background: #F1F5F9;
+
+/* ── Review button ── */
+
+.review-btn {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+  background: #059669;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: "Handjet", sans-serif;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  box-sizing: border-box;
+}
+
+.review-btn:hover:not(:disabled) { background: #047857; }
+.review-btn:disabled              { background: #94A3B8; cursor: not-allowed; }
+
+/* ── Loading spinner ── */
+
+.slide-review-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 0;
+  font-family: "Handjet", sans-serif;
+  color: #334155;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #EAE3D5;
+  border-top-color: #791212;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Results header ── */
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #334155;
+  font-family: "Handjet", sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.download-btn {
+  padding: 8px 16px;
+  background: #EAE3D5;
+  border: 1px solid #791212;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: "Handjet", sans-serif;
+  color: #334155;
+  transition: background 0.15s ease;
+}
+
+.download-btn:hover { background: #d4cdc0; }
+
+/* ── Slide results + cards container ── */
+
+.slide-review-results {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#slide-cards-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Slide cards ── */
+
+.slide-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #d4cdc0;
+  border-left: 5px solid #CBD5E1;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.slide-card.priority-high   { border-left-color: #EF4444; }
+.slide-card.priority-medium { border-left-color: #F59E0B; }
+.slide-card.priority-low    { border-left-color: #10B981; }
+
+.slide-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f5f0e8;
+  border-bottom: 1px solid #d4cdc0;
+  flex-wrap: wrap;          /* wraps on narrow viewports */
+}
+
+.slide-number {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #64748B;
+  white-space: nowrap;
+  font-family: "Handjet", sans-serif;
+}
+
+.slide-title {
+  font-weight: 600;
   color: #1E293B;
-  border-bottom-left-radius: 4px;
+  flex: 1;
+  font-family: "Handjet", sans-serif;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;             /* lets flex child shrink below its content size */
 }
 
-/* Typing indicator */
-.typing-indicator p {
+.priority-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-family: "Handjet", sans-serif;
+}
+
+.priority-badge.priority-high   { background: #FEE2E2; color: #B91C1C; }
+.priority-badge.priority-medium { background: #FEF3C7; color: #92400E; }
+.priority-badge.priority-low    { background: #D1FAE5; color: #065F46; }
+
+.slide-card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.field-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: #94A3B8;
+  font-family: "Handjet", sans-serif;
+}
+
+/*
+  white-space: normal overrides the pre-wrap set on .message p.
+  Without this, slide card text inherits pre-wrap via the
+  "body p" selector and renders as one long unbroken line.
+*/
+.field p {
+  margin: 0;
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  font-family: "Handjet", sans-serif;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.suggestion-field .field-label { color: #059669; }
+.suggestion-field p             { color: #065F46; }
+
+/* ── Overall summary card ── */
+
+.summary-card {
+  background: #f5f0e8;
+  border: 1px solid #791212;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.summary-card h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #791212;
+  margin: 0 0 8px;
+  font-family: "Gugi", sans-serif;
+}
+
+.summary-card p {
+  margin: 0 0 16px;
+  color: #1E293B;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  font-family: "Handjet", sans-serif;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.summary-card p:last-child { margin-bottom: 0; }
+
+.socratic-q {
   font-style: italic;
+  color: #791212 !important;
+  font-weight: 500;
 }
