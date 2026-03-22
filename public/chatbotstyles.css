@@ -94,8 +94,8 @@ body btn {
    TAB PANELS
 ═══════════════════════════════════════════════════════════ */
 
-.tab-panel        { display: none; width: 100%; height: 100%; }
-.tab-panel.active { display: flex; flex-direction: column; justify-content: flex-end; }
+.tab-panel        { display: none; }
+.tab-panel.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 
 .tab-btn        { cursor: pointer; }
 .tab-btn.active { color: white !important; }
@@ -111,11 +111,14 @@ body btn {
     background-color: #EAE3D5;
     border-color: #791212;
     border-width: 10px;
-    width: 100vw;
+    /* width: 100vw; */
+    width: 100%;
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    /* overflow: hidden; */
+    margin-right: 2rem;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -128,7 +131,8 @@ body btn {
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
-    height: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 .chat-content {
@@ -162,6 +166,7 @@ body btn {
     margin: 1rem 0.5rem;
     padding-left: 1rem;
     font-family: "Handjet", sans-serif;
+    /* color: #791212; */
 }
 
 .chat-input button {
@@ -172,6 +177,10 @@ body btn {
     border-radius: 0.5rem;
     margin-right: 2rem;
 }
+
+/* .chat-input textarea:placeholder {
+    color: #791212;
+} */
 
 .chat-input img {
     width: 3%;
@@ -209,15 +218,27 @@ body btn {
 ═══════════════════════════════════════════════════════════ */
 
 #tab-slides.tab-panel.active {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 1.5rem;
-  height: 100%;
-  box-sizing: border-box;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    /* Visual styles copied from .chatbox */
+    background-color: #EAE3D5;
+    border-radius: 2rem;
+    border-color: #791212;
+    border-width: 10px;
+    border-style: solid;
+    margin-right: 2rem;
+
+    /* Layout */
+    padding: 1.5rem;
+    width: 100%;
+    height: 80vh;
+    max-height: 80vh;
+    box-sizing: border-box;
+    min-height: 0;
 }
 
 /* ── Upload area ── */
