@@ -174,7 +174,7 @@ const studentName = sessionStorage.getItem('studentName');
 if (studentName) {
   appendMessage(
     MrLauder,
-    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! Above you can click to either record or upload your script, and upload a PDF version of your slides/presentation.`
+    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! Above you can click to either chat to have a conversations with me, where you have the option to upload your script, or click "Slide Review" to upload a PDF/pptx version of your slides/presentation for more feedback.`
   );
 }
 
