@@ -31,41 +31,59 @@
 //
 const KEYWORD_MAP = [
   {
-    // Fired when Mr. Lauder expresses approval / excitement
-    keywords: ['yes, excellent', 'yes excellent', 'excellent!', 'excellent work', 'well done'],
-    audio: '/audio/yes-excellent.mp3',
-    label: 'Yes, Excellent!',
-  },
-  {
     // Pain / exasperation sound
-    keywords: ['ahh', 'ahhh', /\bugh\b/, /\boh no\b/],
-    audio: '/audio/ahh.mp3',
+    keywords: ['ahh', 'ahhh'],
+    audio: '/audio/Ahh.mp3',
     label: 'Ahh!',
-  },
-  {
-    // Encouragement / positive nudge
-    keywords: ['good question', 'great question', 'interesting question'],
-    audio: '/audio/good-question.mp3',
-    label: 'Good Question',
   },
   {
     // Disappointment / try-harder signal
     keywords: ['not quite', 'not quite right', "that's not right", 'incorrect', 'wrong approach'],
-    audio: '/audio/not-quite.mp3',
+    audio: '/audio/Not_quite.mp3',
     label: 'Not Quite',
   },
   {
-    // Thinking / pondering pause
-    keywords: [/\bhmm+\b/i, 'let me think', 'interesting…', 'interesting...'],
-    audio: '/audio/hmm.mp3',
-    label: 'Hmm…',
+    // Consistency / habit reinforcement
+    keywords: ['consistency is the key', 'consistency is key', 'key to success', 'consistency is the key to success'],
+    audio: '/audio/Consistency_is_the_key_to_success.mp3',
+    label: 'Consistency is the Key',
   },
-  // ── Add more entries here following the same pattern ────────
-  // {
-  //   keywords: ['congratulations', 'perfect score'],
-  //   audio: '/audio/congrats.mp3',
-  //   label: 'Congratulations',
-  // },
+  {
+    // Enthusiastic approval
+    keywords: ['fantastic', 'fantastic work', 'fantastic job', "that's fantastic"],
+    audio: '/audio/Fantastic.mp3',
+    label: 'Fantastic!',
+  },
+  {
+    // Mild positive acknowledgement
+    keywords: ['good stuff', 'good stuff!', 'good stuff there'],
+    audio: '/audio/Good_stuff.mp3',
+    label: 'Good Stuff',
+  },
+  {
+    // Thinking / uncertainty pause (distinct from hmm)
+    keywords: [/\bhmmm+\b/i, 'hmmm', 'hmmmm'],
+    audio: '/audio/Hmmm.mp3',
+    label: 'Hmmm…',
+  },
+  {
+    // Disappointment / correction (lighter variant)
+    keywords: ['not quite', 'not quite there', 'not exactly', 'close but not quite'],
+    audio: '/audio/Not_quite.mp3',
+    label: 'Not Quite',
+  },
+  {
+    // Strong agreement / confirmation
+    keywords: ['yes exactly', 'yes, exactly', 'exactly right', 'that is exactly right', "that's exactly it"],
+    audio: '/audio/Yes_exactly.mp3',
+    label: 'Yes, Exactly!',
+  },
+  {
+    // Perseverance / unstoppable work ethic
+    keywords: ['you can not kill work', 'you cannot kill work', "can't kill the work", 'work never dies'],
+    audio: '/audio/You_can_not_kill_work.mp3',
+    label: 'You Cannot Kill Work',
+  },
 ];
 
 // ─── 2. INTERNAL PLAYBACK QUEUE ──────────────────────────────
