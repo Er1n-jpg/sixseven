@@ -173,8 +173,11 @@ chatContent.innerHTML = '';
 const studentName = sessionStorage.getItem('studentName');
 if (studentName) {
   appendMessage(
-    MrLauder,
-    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! Above you can click to either chat to have a conversations with me, where you have the option to upload your script, or click "Slide Review" to upload a PDF/pptx version of your slides/presentation for more feedback.`
+    'mrLauder',
+    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! 
+    There are two modes you can select above: Chat or Slides Review. 
+     - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
+     - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
   );
 }
 
@@ -244,7 +247,7 @@ async function handleSubmit() {
   try{
     const feedback = await getFeedback(content, context, script);
     removeTyping();
-    appendMessage(MrLauder, feedback);
+    appendMessage('mrLauder', feedback);
   } catch (err) {
     removeTyping();
     appendMessage('system', "Something went wrong. Please try again.");
