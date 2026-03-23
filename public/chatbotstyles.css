@@ -117,7 +117,7 @@ body btn {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* overflow: hidden; */
+    overflow: hidden;
     margin-right: 2rem;
 }
 
@@ -141,6 +141,7 @@ body btn {
     height: 100%;
     margin-left: 1rem;
     padding-top: 1rem;
+    border-radius: 2rem; /* add this */
 }
 
 .chat-content::-webkit-scrollbar-track {
