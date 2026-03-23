@@ -5,6 +5,8 @@ import MrLauder from './Personality.js';
 import { submitSlideReview } from './slideReview.js';
 import { parseReviewText, renderSlideCards, generateDownloadText } from './slideUI.js';
 
+import { scanAndPlay, preloadAudio, stopAll } from './audioEngine.js';
+
 // ── Render the bio card once on page load ──────────────────────
 // function renderBioCard() {
 //   const card = document.getElementById("bio-card");
@@ -41,6 +43,8 @@ const textInput = document.getElementById('text-input');
 const submitBtn = document.getElementById('submit');
 const scriptBtn = document.getElementById('script');
 
+const talk_to_me_audio = new Audio('audio/Talk_to_me.mp3');
+
 let script = false;
 
 scriptBtn.addEventListener('click', function() {
@@ -61,6 +65,7 @@ const slidePanel = document.getElementById('tab-slides');
 
 tabButtons.forEach(btn => {
   btn.addEventListener('click', () => {
+    stopAll();
     const target = btn.dataset.tab;
 
     // Update active button
@@ -169,17 +174,7 @@ downloadBtn.addEventListener('click', () => {
 // ── Clear the placeholder paragraphs from your HTML ──────────────
 chatContent.innerHTML = '';
 
-// Greet the student by name if one was provided on the welcome screen
-const studentName = sessionStorage.getItem('studentName');
-if (studentName) {
-  appendMessage(
-    'mrLauder',
-    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! 
-    There are two modes you can select above: Chat or Slides Review. 
-     - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
-     - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
-  );
-}
+preloadAudio();
 
 // ── Adds a message bubble to the chat ────────────────────────────
 export function appendMessage(sender, text) {
@@ -195,6 +190,27 @@ export function appendMessage(sender, text) {
   // Auto-scroll to the latest message
   chatContent.scrollTop = chatContent.scrollHeight;
 }
+
+// Greet the student by name if one was provided on the welcome screen
+const studentName = sessionStorage.getItem('studentName');
+if (studentName) {
+  appendMessage(
+    'mrLauder',
+    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! 
+    There are two modes you can select above: Chat or Slides Review. 
+     - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
+     - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
+  );
+  document.addEventListener('click', () => {
+    talk_to_me_audio.play().catch(console.warn);
+  }, { once: true });
+}
+
+if (sessionStorage.getItem('playGreeting') === 'true') {
+  sessionStorage.removeItem('playGreeting');
+  talk_to_me_audio.play().catch(console.warn);
+}
+
 
 // ── Shows a typing indicator while waiting for the response ──────
 function showTyping() {
@@ -248,6 +264,7 @@ async function handleSubmit() {
     const feedback = await getFeedback(content, context, script);
     removeTyping();
     appendMessage('mrLauder', feedback);
+    scanAndPlay(feedback);
   } catch (err) {
     removeTyping();
     appendMessage('system', "Something went wrong. Please try again.");
