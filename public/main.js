@@ -175,18 +175,6 @@ downloadBtn.addEventListener('click', () => {
 chatContent.innerHTML = '';
 
 preloadAudio();
-// Greet the student by name if one was provided on the welcome screen
-const studentName = sessionStorage.getItem('studentName');
-if (studentName) {
-  appendMessage(
-    'mrLauder',
-    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! 
-    There are two modes you can select above: Chat or Slides Review. 
-     - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
-     - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
-  );
-  talk_to_me_audio.play();
-}
 
 // ── Adds a message bubble to the chat ────────────────────────────
 export function appendMessage(sender, text) {
@@ -202,6 +190,27 @@ export function appendMessage(sender, text) {
   // Auto-scroll to the latest message
   chatContent.scrollTop = chatContent.scrollHeight;
 }
+
+// Greet the student by name if one was provided on the welcome screen
+const studentName = sessionStorage.getItem('studentName');
+if (studentName) {
+  appendMessage(
+    'mrLauder',
+    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! 
+    There are two modes you can select above: Chat or Slides Review. 
+     - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
+     - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
+  );
+  document.addEventListener('click', () => {
+    talk_to_me_audio.play().catch(console.warn);
+  }, { once: true });
+}
+
+if (sessionStorage.getItem('playGreeting') === 'true') {
+  sessionStorage.removeItem('playGreeting');
+  talk_to_me_audio.play().catch(console.warn);
+}
+
 
 // ── Shows a typing indicator while waiting for the response ──────
 function showTyping() {
