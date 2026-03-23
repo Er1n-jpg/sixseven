@@ -43,6 +43,8 @@ const textInput = document.getElementById('text-input');
 const submitBtn = document.getElementById('submit');
 const scriptBtn = document.getElementById('script');
 
+const talk_to_me_audio = new Audio('audio/Talk_to_me.mp3');
+
 let script = false;
 
 scriptBtn.addEventListener('click', function() {
@@ -183,6 +185,7 @@ if (studentName) {
      - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
      - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
   );
+  talk_to_me_audio.play();
 }
 
 // ── Adds a message bubble to the chat ────────────────────────────
