@@ -5,6 +5,8 @@ import MrLauder from './Personality.js';
 import { submitSlideReview } from './slideReview.js';
 import { parseReviewText, renderSlideCards, generateDownloadText } from './slideUI.js';
 
+import { scanAndPlay, preloadAudio, stopAll } from './audioEngine.js';
+
 // ── Render the bio card once on page load ──────────────────────
 // function renderBioCard() {
 //   const card = document.getElementById("bio-card");
@@ -61,6 +63,7 @@ const slidePanel = document.getElementById('tab-slides');
 
 tabButtons.forEach(btn => {
   btn.addEventListener('click', () => {
+    stopAll();
     const target = btn.dataset.tab;
 
     // Update active button
@@ -169,6 +172,7 @@ downloadBtn.addEventListener('click', () => {
 // ── Clear the placeholder paragraphs from your HTML ──────────────
 chatContent.innerHTML = '';
 
+preloadAudio();
 // Greet the student by name if one was provided on the welcome screen
 const studentName = sessionStorage.getItem('studentName');
 if (studentName) {
@@ -248,6 +252,7 @@ async function handleSubmit() {
     const feedback = await getFeedback(content, context, script);
     removeTyping();
     appendMessage('mrLauder', feedback);
+    scanAndPlay(feedback);
   } catch (err) {
     removeTyping();
     appendMessage('system', "Something went wrong. Please try again.");
