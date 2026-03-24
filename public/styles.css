@@ -13,7 +13,7 @@ h1{
     font-weight: 575;
     margin-bottom: 5px;
     margin-top: 70px;
-    color:#B23939;
+    color:#ff0000;
     width: 1107px;
     transition: all 0.1s ease-in-out;
 }
@@ -26,7 +26,8 @@ h4{
     font-family: Handjet;
     font-size: 48px;
     margin-top: 1%;
-    color: #B23939;
+    color: #ff0000;
+    /* color: #B23939; */
     margin-bottom: 40px;
 
 }
@@ -58,6 +59,9 @@ textarea{
     background-color: #EAE3D5;
 }
 
+.hidden {
+  display: none;
+}
 
 
 /* styles.css */

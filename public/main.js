@@ -2,6 +2,9 @@
 import { getFeedback } from './feedback.js';
 import MrLauder from './Personality.js';
 
+import { submitSlideReview } from './slideReview.js';
+import { parseReviewText, renderSlideCards, generateDownloadText } from './slideUI.js';
+
 // ── Render the bio card once on page load ──────────────────────
 // function renderBioCard() {
 //   const card = document.getElementById("bio-card");
@@ -36,12 +39,150 @@ import MrLauder from './Personality.js';
 const chatContent = document.getElementById('chat-content');
 const textInput = document.getElementById('text-input');
 const submitBtn = document.getElementById('submit');
+const scriptBtn = document.getElementById('script');
+
+let script = false;
+
+scriptBtn.addEventListener('click', function() {
+  // Toggle the state variable
+  script = !script;
+
+  if (script){
+    scriptBtn.style.backgroundColor = '#c8e0c1';
+  } else{
+    scriptBtn.style.backgroundColor = '';
+  }
+});
+
+// Tab switching — works with custom <btn> elements
+const tabButtons = document.querySelectorAll('.tab-btn');
+const chatPanel  = document.getElementById('tab-chat');
+const slidePanel = document.getElementById('tab-slides');
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+
+    // Update active button
+    tabButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show/hide panels directly by ID — more reliable than querySelectorAll
+    if (target === 'chat') {
+      chatPanel.classList.add('active');
+      slidePanel.classList.remove('active');
+    } else if (target === 'slides') {
+      slidePanel.classList.add('active');
+      chatPanel.classList.remove('active');
+    }
+  });
+});
+
+// Should log the two tab-btn elements
+console.log('Tab buttons found:', document.querySelectorAll('.tab-btn').length);
+
+// Should log the two panel divs
+console.log('Chat panel:', document.getElementById('tab-chat'));
+console.log('Slide panel:', document.getElementById('tab-slides'));
+
+// File input
+const fileInput        = document.getElementById('slide-file-input');
+const fileNameDisplay  = document.getElementById('file-name-display');
+const reviewBtn        = document.getElementById('review-btn');
+
+let selectedFile = null;
+
+fileInput.addEventListener('change', () => {
+  selectedFile = fileInput.files[0] || null;
+  if (selectedFile) {
+    fileNameDisplay.textContent = `Selected: ${selectedFile.name} (${(selectedFile.size / 1024 / 1024).toFixed(1)} MB)`;
+    reviewBtn.disabled = false;
+  } else {
+    fileNameDisplay.textContent = '';
+    reviewBtn.disabled = true;
+  }
+});
+
+// Review Submission 
+
+const loadingDiv     = document.getElementById('slide-review-loading');
+const loadingMessage = document.getElementById('loading-message');
+const resultsDiv     = document.getElementById('slide-review-results');
+const slideCountLabel = document.getElementById('slide-count-label');
+const downloadBtn    = document.getElementById('download-feedback-btn');
+
+let lastParsedReview = null;
+let lastFileName     = '';
+
+reviewBtn.addEventListener('click', async () => {
+  if (!selectedFile) return;
+
+  // Reset UI state
+  resultsDiv.style.display = 'none';
+  document.getElementById('slide-cards-container').innerHTML = '';
+  document.getElementById('overall-summary-card').style.display = 'none';
+
+  loadingDiv.style.display = 'flex';
+  reviewBtn.disabled       = true;
+  loadingMessage.textContent = 'Reading your slides...';
+
+  try {
+    const result = await submitSlideReview(
+      selectedFile,
+      (msg) => { loadingMessage.textContent = msg; }  // Progress callback
+    );
+
+    const parsedReview = parseReviewText(result.review);
+    lastParsedReview   = parsedReview;
+    lastFileName       = selectedFile.name;
+
+    renderSlideCards(parsedReview);
+
+    slideCountLabel.textContent = `${result.slideCount} slides reviewed`;
+    loadingDiv.style.display    = 'none';
+    resultsDiv.style.display    = 'block';
+
+    // Scroll to results
+    resultsDiv.closest('.tab-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  } catch (err) {
+    loadingDiv.style.display = 'none';
+    alert(`Error: ${err.message}`);  // Replace with a nicer in-UI error message if desired
+  } finally {
+    reviewBtn.disabled = false;
+  }
+});
+
+// Download handler
+downloadBtn.addEventListener('click', () => {
+  if (!lastParsedReview) return;
+  const text = generateDownloadText(lastParsedReview, lastFileName);
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `slide-review-${lastFileName.replace('.pptx', '')}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
 // ── Clear the placeholder paragraphs from your HTML ──────────────
 chatContent.innerHTML = '';
 
+// Greet the student by name if one was provided on the welcome screen
+const studentName = sessionStorage.getItem('studentName');
+if (studentName) {
+  appendMessage(
+    'mrLauder',
+    `Helloooo ${studentName}!! I am an AI version of Mr Lauder, I can give you personalized feedback on your presentation, and help you cook it!! 
+    There are two modes you can select above: Chat or Slides Review. 
+     - Chat (current mode): have a conversations with me! Or you can select "Script" near "send" to upload and receive feedback on your script. 
+     - Slide Review: upload a PDF/pptx version of your slides/presentation for more feedback.`
+  );
+}
+
 // ── Adds a message bubble to the chat ────────────────────────────
-function appendMessage(sender, text) {
+export function appendMessage(sender, text) {
   const wrapper = document.createElement('div');
   wrapper.className = `message ${sender}`; // 'user' or 'mrLauder'
 
@@ -71,6 +212,7 @@ function removeTyping() {
 }
 
 function getContext(html) {
+  console.log(html);
   const container = document.createElement("div");
   container.innerHTML = html;
 
@@ -88,9 +230,11 @@ function getContext(html) {
 
 // ── Main send logic ───────────────────────────────────────────────
 async function handleSubmit() {
+  // Get user message
   const content = textInput.value.trim();
   if (!content) return;
 
+  // Get context
   const context = (chatContent.innerHTML.length === 0) ? '' : getContext(chatContent.innerHTML)
   console.log("Context: " + context);
 
@@ -100,10 +244,10 @@ async function handleSubmit() {
 
   showTyping();
 
-  try {
-    const feedback = await getFeedback(content, context);
+  try{
+    const feedback = await getFeedback(content, context, script);
     removeTyping();
-    appendMessage(MrLauder, feedback);
+    appendMessage('mrLauder', feedback);
   } catch (err) {
     removeTyping();
     appendMessage('system', "Something went wrong. Please try again.");
@@ -118,3 +262,4 @@ submitBtn.addEventListener("click", handleSubmit);
 textInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') handleSubmit();
 });
+
