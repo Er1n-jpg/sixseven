@@ -524,3 +524,12 @@ body btn {
   color: #791212 !important;
   font-weight: 500;
 }
+
+.lauder{
+    img{
+      max-height: 700px;
+      max-width: 500px;
+      align-items: center;
+
+    }
+}
