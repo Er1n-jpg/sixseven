@@ -23,7 +23,7 @@ OVERALL SUMMARY:
 [2-3 sentences on the deck as a whole]
 
 SOCRATIC QUESTION:
-[One question that makes the student think about the purpose of their deck]
+[One question that makes the student think about the purpose of their deck (e.g. If you are going to make this project all over agian, what would you do differently?)]
 
 Rules:
 - Review every slide. Do not skip any.
