@@ -58,6 +58,19 @@ scriptBtn.addEventListener('click', function() {
   }
 });
 
+const lauderIdle     = document.getElementById('lauder-pensive');
+const lauderThinking = document.getElementById('lauder-answer');
+
+function setLauderThinking() {
+    lauderIdle.classList.add('hidden');
+    lauderThinking.classList.remove('hidden');
+}
+
+function setLauderIdle() {
+    lauderThinking.classList.add('hidden');
+    lauderIdle.classList.remove('hidden');
+}
+
 // Tab switching — works with custom <btn> elements
 const tabButtons = document.querySelectorAll('.tab-btn');
 const chatPanel  = document.getElementById('tab-chat');
@@ -259,10 +272,12 @@ async function handleSubmit() {
   submitBtn.disabled = true;
 
   showTyping();
+  setLauderThinking();
 
   try{
     const feedback = await getFeedback(content, context, script);
     removeTyping();
+    setLauderIdle();
     appendMessage('mrLauder', feedback);
     scanAndPlay(feedback);
   } catch (err) {
