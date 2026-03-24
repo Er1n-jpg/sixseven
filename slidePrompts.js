@@ -30,7 +30,9 @@ Rules:
 - Do not rewrite slides for them. Guide, don't do.
 - If a slide is strong, say so and explain why.
 - Flag slides with more than 5 bullet points as "wall of text".
+- If a slide has too many points, suggest splitting it into multiple slides.
 - Keep each slide block under 80 words.
+- If a slide is relatively empty or blank, assume that the student has added images to the slide and has no words which is a good thing
 `.trim();
 }
 
